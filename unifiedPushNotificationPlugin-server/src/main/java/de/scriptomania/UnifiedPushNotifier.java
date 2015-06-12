@@ -11,8 +11,6 @@ import jetbrains.buildServer.serverSide.*;
 import jetbrains.buildServer.serverSide.mute.MuteInfo;
 import jetbrains.buildServer.serverSide.problems.BuildProblemInfo;
 import jetbrains.buildServer.tests.TestName;
-import jetbrains.buildServer.users.NotificatorPropertyKey;
-import jetbrains.buildServer.users.PropertyKey;
 import jetbrains.buildServer.users.SUser;
 import jetbrains.buildServer.vcs.VcsRoot;
 import org.jetbrains.annotations.NotNull;
@@ -29,56 +27,43 @@ public class UnifiedPushNotifier implements Notificator {
 
     private static final Logger LOGGER = Logger.getInstance(UnifiedPushNotifier.class.getName());
 
-    private static final String TYPE = "UnifiedPushNotifier";
-    private static final String TYPE_NAME = "Aerogear-Unified-Push-Service-Notifier";
-    private static final String SERVER_URL = "SERVER_URL";
-    private static final String APPLICATION_ID = "APPLICATION_ID";
-    private static final String MASTER_SECRET = "MASTER_SECRET";
+    public static final String TYPE = "UnifiedPushNotifier";
+    private static final String TYPE_NAME = "Unified-Push-Service-Notifier";
 
-    private static final PropertyKey SERVER_URL_KEY = new NotificatorPropertyKey(TYPE, SERVER_URL);
-    private static final PropertyKey APPLICATION_ID_KEY = new NotificatorPropertyKey(TYPE, APPLICATION_ID);
-    private static final PropertyKey MASTER_SECRET_KEY = new NotificatorPropertyKey(TYPE, MASTER_SECRET);
+    private UnifiedPushServerSettings serverSettings;
 
-    public UnifiedPushNotifier(NotificatorRegistry notificatorRegistry, NotificationRulesManager notificationRulesManager) throws IOException {
+    public UnifiedPushNotifier(NotificatorRegistry notificatorRegistry, NotificationRulesManager notificationRulesManager, @NotNull UnifiedPushServerSettings serverSettings) throws IOException {
         ArrayList<UserPropertyInfo> userProps = new ArrayList<UserPropertyInfo>();
-        userProps.add(new UserPropertyInfo(SERVER_URL, "Server-URL"));
-        userProps.add(new UserPropertyInfo(APPLICATION_ID, "Application-ID"));
-        userProps.add(new UserPropertyInfo(MASTER_SECRET, "Master-Secret"));
+        userProps.add(new UserPropertyInfo(UnifiedPushServerSettings.ALIAS, "Alias"));
         notificatorRegistry.register(this, userProps);
-    }
-
-    private void sendMessage(SUser user, SRunningBuild sRunningBuild) {
-        String serverURL = user.getPropertyValue(SERVER_URL_KEY);
-        String applicationID = user.getPropertyValue(APPLICATION_ID_KEY);
-        String masterSecret = user.getPropertyValue(MASTER_SECRET_KEY);
-        UnifiedPushMessageSender.sendMessage(serverURL, applicationID, masterSecret, sRunningBuild);
+        this.serverSettings = serverSettings;
     }
 
     @Override
     public void notifyBuildStarted(SRunningBuild sRunningBuild, Set<SUser> sUsers) {
         for (SUser user : sUsers) {
-            sendMessage(user, sRunningBuild);
+            UnifiedPushMessageSender.sendMessage(serverSettings, sRunningBuild, sUsers);
         }
     }
 
     @Override
     public void notifyBuildSuccessful(SRunningBuild sRunningBuild, Set<SUser> sUsers) {
         for (SUser user : sUsers) {
-            sendMessage(user, sRunningBuild);
+            UnifiedPushMessageSender.sendMessage(serverSettings, sRunningBuild, sUsers);
         }
     }
 
     @Override
     public void notifyBuildFailed(SRunningBuild sRunningBuild, Set<SUser> sUsers) {
         for (SUser user : sUsers) {
-            sendMessage(user, sRunningBuild);
+            UnifiedPushMessageSender.sendMessage(serverSettings, sRunningBuild, sUsers);
         }
     }
 
     @Override
     public void notifyBuildFailedToStart(SRunningBuild sRunningBuild, Set<SUser> sUsers) {
         for (SUser user : sUsers) {
-            sendMessage(user, sRunningBuild);
+            UnifiedPushMessageSender.sendMessage(serverSettings, sRunningBuild, sUsers);
         }
     }
 
@@ -90,14 +75,14 @@ public class UnifiedPushNotifier implements Notificator {
     @Override
     public void notifyBuildFailing(SRunningBuild sRunningBuild, Set<SUser> sUsers) {
         for (SUser user : sUsers) {
-            sendMessage(user, sRunningBuild);
+            UnifiedPushMessageSender.sendMessage(serverSettings, sRunningBuild, sUsers);
         }
     }
 
     @Override
     public void notifyBuildProbablyHanging(SRunningBuild sRunningBuild, Set<SUser> sUsers) {
         for (SUser user : sUsers) {
-            sendMessage(user, sRunningBuild);
+            UnifiedPushMessageSender.sendMessage(serverSettings, sRunningBuild, sUsers);
         }
     }
 
