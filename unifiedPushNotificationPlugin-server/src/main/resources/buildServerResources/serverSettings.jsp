@@ -21,13 +21,27 @@
 <bs:refreshable containerId="saveSettingsContainer" pageUrl="${pageUrl}">
 <c:url var="actionUrl" value="/saveSettings.html"/>
 <form action="${actionUrl}" id="saveSettingsForm" method="POST" >
-    Server-URL: <input type="text" name="server_url" value="${server_url}" />
-    <br />
-    Application-ID: <input type="text" name="application_id" value="${application_id}" />
-    <br />
-    Master-Secret: <input type="text" name="master_secret" value="${master_secret}" />
-    <br />
-    <input type="button" value="Save" class="btn btn_primary submitButton" onClick="saveSettings(this.form)"/>
+<table class="runnerFormTable">
+      <tbody>
+
+        <tr>
+        <th><label for="Server-Url">Server-URL:<span class="mandatoryAsterix" title="Mandatory field">*</span></label></th>
+        <td><input type="text" name="server_url" value="${server_url}" class="textField" /></td>
+        </tr>
+
+        <tr>
+        <th><label for="Application-ID">Application-ID:<span class="mandatoryAsterix" title="Mandatory field">*</span></label></th>
+        <td><input type="text" name="application_id" value="${application_id}" class="textField" /></td>
+        </tr>
+
+        <tr>
+        <th><label for="Master-Secret">Master-Secret:<span class="mandatoryAsterix" title="Mandatory field">*</span></label></th>
+        <td><input type="text" name="master_secret" value="${master_secret}" class="textField" /></td>
+        </tr>
+
+      </tbody>
+</table>
+      <input type="button" value="Save" class="btn btn_primary submitButton" onClick="saveSettings(this.form)"/>
 </form>
 <bs:messages key="settingsMessage"/>
 </bs:refreshable>

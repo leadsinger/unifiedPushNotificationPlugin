@@ -1,15 +1,15 @@
 
- TeamCity server-side plugin
+ TeamCity Unfied Push Notifier Plugin
 
- This is an empty project to develop TeamCity plugin that operates on server-side only.
+ With this plugin you can send build states via push notifications with Aerogear's Unified Push Server (https://aerogear.org/push/).
 
- 1. Implement
- Put your implementing classes to "<artifactId>-server" module. Do not forget to update spring context file in 'main/resources/META-INF'. See TeamCity documentation for details.
+ Installation
 
- 2. Build
- Issue 'mvn package' command from the root project to build your plugin. Resulting package <artifactId>.zip will be placed in 'target' directory. 
- 
- 3. Install
- To install the plugin, put zip archive to 'plugins' dir under TeamCity data directory and restart the server.
+  - You need to setup a push server -> you can easily setup one on openshift ((Tutorial: https://aerogear.org/push/))
 
+  - Install the plugin
+   - Configure the settings in admin tab
+   - add an alias in the notification rules
+
+  - Use my little sample app to receive push notifications from your teamcity server
  

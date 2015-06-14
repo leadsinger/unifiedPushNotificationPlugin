@@ -5,12 +5,12 @@
     <display-name>Unified-PushNotifications</display-name>
     <version>@Version@</version>
     <description>A TeamCity Plugin which allows to send push notifications via AeroGear's UnfiedPush-Server.</description>
-    <download-url>Plugin download URL</download-url>
+    <download-url>http://www.scriptomania-software.de/software/teamcity/</download-url>
     <email>andre.poschwald@gmail.com</email>
     <vendor>
       <name>@VendorName@</name>
       <url>@VendorURL@</url>
-      <logo>Plugin vendor logo URL</logo>
+      <logo></logo>
     </vendor>
   </info>
   <deployment use-separate-classloader="true" />

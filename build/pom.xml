@@ -11,7 +11,7 @@
   <properties>
       <maven.build.timestamp.format>yyyyddMMHHmmss</maven.build.timestamp.format>
       <teamcity.unifiedPushNotificationPlugin.plugin.version>snapshot-${maven.build.timestamp}</teamcity.unifiedPushNotificationPlugin.plugin.version>
-      <teamcity.unifiedPushNotificationPlugin.plugin.vendorName>Scriptomania-Software</teamcity.unifiedPushNotificationPlugin.plugin.vendorName>
+      <teamcity.unifiedPushNotificationPlugin.plugin.vendorName>Scriptomania Software</teamcity.unifiedPushNotificationPlugin.plugin.vendorName>
       <teamcity.unifiedPushNotificationPlugin.plugin.vendorUrl>http://www.scriptomania-software.de</teamcity.unifiedPushNotificationPlugin.plugin.vendorUrl>
   </properties>
   <dependencies>
