@@ -13,7 +13,7 @@ import java.util.Map;
  */
 public class UnifiedPushServerSettingsPage extends AdminPage {
 
-    private static final String PLUGIN_NAME = "Unified-Push-Service-Notifier";
+    private static final String PLUGIN_NAME = "Unified-Push-Notifier";
     private static final String TAB_TITLE = "Unified Push Notifier";
     private static final String PAGE = "serverSettings.jsp";
 

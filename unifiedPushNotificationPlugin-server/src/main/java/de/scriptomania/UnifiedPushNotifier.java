@@ -28,7 +28,7 @@ public class UnifiedPushNotifier implements Notificator {
     private static final Logger LOGGER = Logger.getInstance(UnifiedPushNotifier.class.getName());
 
     public static final String TYPE = "UnifiedPushNotifier";
-    private static final String TYPE_NAME = "Unified-Push-Service-Notifier";
+    private static final String TYPE_NAME = "Unified-Push-Notifier";
 
     private UnifiedPushServerSettings serverSettings;
 
